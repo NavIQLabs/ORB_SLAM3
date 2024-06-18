@@ -1,0 +1,7 @@
+[submodule "Thirdparty/Pangolin"]
+	path = Thirdparty/Pangolin
+	url = https://github.com/AlphaGotReal/Pangolin.git
+	branch = version0.6
+[submodule "Thirdparty/opencv"]
+	path = Thirdparty/opencv
+	url = https://github.com/opencv/opencv.git
