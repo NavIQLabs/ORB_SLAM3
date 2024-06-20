@@ -108,6 +108,9 @@ public:
 
     float GetImageScale();
 
+    // custom
+    KeyFrame* GetReferenceKF();
+
 #ifdef REGISTER_LOOP
     void RequestStop();
     bool isStopped();

@@ -187,6 +187,8 @@ public:
     float GetImageScale();
 
     Atlas* GetAtlas();
+    bool DetectedLoopClosure();
+    Sophus::SE3f GetMapToOdom(bool& success);
 
 #ifdef REGISTER_TIMES
     void InsertRectTime(double& time);

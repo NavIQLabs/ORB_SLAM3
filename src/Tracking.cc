@@ -4083,6 +4083,11 @@ float Tracking::GetImageScale()
     return mImageScale;
 }
 
+KeyFrame* Tracking::GetReferenceKF()
+{
+    return mpReferenceKF;
+}
+
 #ifdef REGISTER_LOOP
 void Tracking::RequestStop()
 {

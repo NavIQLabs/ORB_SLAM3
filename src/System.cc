@@ -1550,5 +1550,34 @@ string System::CalculateCheckSum(string filename, int type)
     return checksum;
 }
 
+bool System::DetectedLoopClosure() 
+{
+    std::unique_lock<std::mutex> lock(mMutexState);
+    return mpLoopCloser->isRunningGBA() && mpLoopCloser->isFinished();
+}
+
+Sophus::SE3f System::GetMapToOdom(bool& success)
+{
+    std::unique_lock<std::mutex> lock(mMutexState);
+    if (mTrackingState == Tracking::LOST)
+    {
+        std::cerr << "Tracking lost. Cannot compute transformation." << std::endl;
+        success = false;
+        return Sophus::SE3f();
+    }
+
+    KeyFrame* pKF = mpTracker->GetReferenceKF();
+    if (pKF)
+    {
+      Sophus::SE3f transformation = pKF->GetPose();
+        success = true;
+        return transformation;
+    }
+
+    std::cerr << "No reference keyframe available." << std::endl;
+    success = false;
+    return Sophus::SE3f();
+}
+
 } //namespace ORB_SLAM
 
